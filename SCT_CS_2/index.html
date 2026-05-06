@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Encryption Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="app-header">
+        <div class="brand">
+            <div class="logo">🔐</div>
+            <div class="title">
+                <h1>Image Encryption Studio</h1>
+                <p class="subtitle">Encrypt and decrypt images via pixel operations</p>
+            </div>
+        </div>
+        <div class="actions">
+            <button id="btnReset" class="btn secondary" title="Reset to original (R)">Reset</button>
+            <button id="btnUndo" class="btn secondary" title="Undo (Ctrl+Z)">Undo</button>
+            <button id="btnRedo" class="btn secondary" title="Redo (Ctrl+Y)">Redo</button>
+            <button id="btnDownload" class="btn primary" title="Download result (D)">Download</button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="controls">
+            <div class="card">
+                <h2>1) Load Image</h2>
+                <div id="dropArea" class="drop-area" tabindex="0">
+                    <div>
+                        <strong>Drag & drop</strong> an image here
+                        <div class="or">or</div>
+                        <label for="fileInput" class="btn">Choose File</label>
+                        <input type="file" id="fileInput" accept="image/*" hidden />
+                    </div>
+                </div>
+                <div class="row gap">
+                    <label class="checkbox"><input type="checkbox" id="preserveAlpha" checked /> Preserve alpha</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>2) Operation</h2>
+                <div class="row">
+                    <label class="w-40" for="modeSelect">Mode</label>
+                    <select id="modeSelect" class="w-60">
+                        <option value="encrypt">Encrypt</option>
+                        <option value="decrypt">Decrypt</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <label class="w-40" for="opSelect">Operation</label>
+                    <select id="opSelect" class="w-60">
+                        <option value="invert">Invert Colors</option>
+                        <option value="add">Add/Subtract Value</option>
+                        <option value="xor_const">XOR with Value</option>
+                        <option value="xor_password">XOR with Password Stream</option>
+                        <option value="xor_image">XOR with Key Image</option>
+                        <option value="shuffle">Pixel Shuffle (seeded)</option>
+                    </select>
+                </div>
+
+                <!-- Dynamic inputs container -->
+                <div id="dynamicInputs" class="stack gap"></div>
+
+                <div class="row end">
+                    <button id="btnApply" class="btn primary">Apply</button>
+                </div>
+            </div>
+
+            <div class="card" id="keyImageCard" style="display:none;">
+                <h2>Key Image</h2>
+                <div id="dropAreaKey" class="drop-area small" tabindex="0">
+                    <div>
+                        <strong>Drop key image</strong>
+                        <div class="or">or</div>
+                        <label for="fileKeyInput" class="btn">Choose Key</label>
+                        <input type="file" id="fileKeyInput" accept="image/*" hidden />
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="w-40" for="keyImageFit">Alignment</label>
+                    <select id="keyImageFit" class="w-60">
+                        <option value="resize">Resize to match</option>
+                        <option value="tile">Tile smaller image</option>
+                        <option value="crop">Crop to fit</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="previews">
+            <div class="canvas-card">
+                <div class="canvas-header">
+                    <h3>Original</h3>
+                    <span id="origInfo" class="meta"></span>
+                </div>
+                <canvas id="canvasOriginal" class="canvas"></canvas>
+            </div>
+
+            <div class="canvas-card">
+                <div class="canvas-header">
+                    <h3>Result</h3>
+                    <span id="resultInfo" class="meta"></span>
+                </div>
+                <canvas id="canvasResult" class="canvas"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div>
+            Built for privacy: all processing happens locally in your browser.
+        </div>
+        <div class="kbd">
+            <span><b>R</b>: Reset</span>
+            <span><b>D</b>: Download</span>
+            <span><b>Ctrl+Z</b>: Undo</span>
+            <span><b>Ctrl+Y</b>: Redo</span>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

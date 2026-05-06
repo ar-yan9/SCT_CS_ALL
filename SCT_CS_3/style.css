@@ -1,0 +1,59 @@
+body {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background: #fffbe7;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    padding: 40px 30px;
+    text-align: center;
+    min-width: 350px;
+}
+h1 {
+    margin-bottom: 10px;
+    font-size: 2.2em;
+}
+#password {
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #fda085;
+    width: 80%;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border 0.2s;
+}
+#password:focus {
+    border: 2px solid #f6d365;
+}
+#strength-meter {
+    width: 100%;
+    height: 18px;
+    background: #eee;
+    border-radius: 9px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+#strength-bar {
+    height: 100%;
+    width: 0%;
+    background: #ff7675;
+    border-radius: 9px;
+    transition: width 0.4s, background 0.4s;
+}
+#strength-feedback {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    min-height: 24px;
+}
+#emoji-feedback {
+    font-size: 2.5em;
+    transition: all 0.3s;
+} 

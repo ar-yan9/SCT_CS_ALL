@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Caesar Cipher</title>
+    <meta name="description" content="Simple Caesar Cipher tool to encrypt and decrypt text with a shift." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 class="app-title">Caesar Cipher</h1>
+      <button id="themeToggle" class="icon-button" aria-label="Toggle theme" title="Toggle light/dark mode">
+        <span id="themeIcon" aria-hidden="true">🌙</span>
+      </button>
+    </header>
+
+    <main class="container">
+      <section class="panel">
+        <div class="field">
+          <label for="inputText" class="field-label">Input text</label>
+          <textarea id="inputText" class="text-area" rows="6" placeholder="Type or paste your text here..."></textarea>
+        </div>
+
+        <div class="field field-inline">
+          <label for="shiftInput" class="field-label">Shift</label>
+          <input id="shiftInput" class="number-input" type="number" min="-25" max="25" step="1" value="3" />
+          <div class="hint">Range: -25 to 25</div>
+        </div>
+
+        <div class="actions">
+          <button id="encryptBtn" class="button primary" type="button">Encrypt</button>
+          <button id="decryptBtn" class="button" type="button">Decrypt</button>
+          <button id="clearBtn" class="button ghost" type="button">Clear</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="field">
+          <label for="outputText" class="field-label">Output</label>
+          <textarea id="outputText" class="text-area" rows="6" placeholder="Your result will appear here" readonly></textarea>
+        </div>
+        <div class="actions">
+          <button id="copyBtn" class="button" type="button">Copy</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <small>Shifted substitution cipher for letters A-Z. Non-letter characters are preserved.</small>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+  </html>
+
